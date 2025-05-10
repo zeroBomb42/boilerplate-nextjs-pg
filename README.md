@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boilerplate Next.js + PostgreSQL
 
-## Getting Started
+A full-stack starter template using Next.js (App Router), Prisma ORM, and PostgreSQL.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🎯 Features
+
+* **Fullstack**: API routes & React UI in one codebase
+* **Authentication**: JWT & session via HTTP-only cookies
+* **Database**: Prisma connected to PostgreSQL
+* **Dockerized**: Dockerfile & docker-compose for local development
+* **Validation**: Joi schema for request payloads
+* **Middleware**: Auth, role-check, and more reusable functions
+
+---
+
+## 🚀 Quick Start / เริ่มต้นอย่างรวดเร็ว
+
+1. Clone repository / โคลนโปรเจกต์
+
+   ```bash
+   git clone https://github.com/your-org/boilerplate-nextjs-pg.git
+   cd boilerplate-nextjs-pg
+   ```
+
+2. Create `.env` based on `.env.example` / สร้างไฟล์ `.env` ตามตัวอย่าง
+
+   ```env
+   PORT=3099
+   PREFIX=/nextjs-test
+   VERSION_PATH=api/v1
+
+   POSTGRES_USER=test
+   POSTGRES_PASSWORD="test1234$$"
+   POSTGRES_DB=nextjs_test
+   DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:5432/${POSTGRES_DB}?schema=public"
+
+   JWT_SECRET=your_jwt_secret
+   ```
+
+3. Run with Docker Compose / รันด้วย Docker Compose
+
+   ```bash
+   docker compose up --build
+   ```
+
+   * Frontend: [http://localhost:3000](http://localhost:3000)
+   * Backend API: [http://localhost:3099/nextjs-test/api/v1](http://localhost:3099/nextjs-test/api/v1)
+   * PostgreSQL: localhost:5432
+
+4. Development / พัฒนาแบบปกติ
+
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+---
+
+## 📂 Project Structure / โครงสร้างโปรเจกต์
+
+```
+├── app/                       # Next.js App Router pages & API
+│   ├── api/                   # API routes
+│   └── login/ dashboard/ ...  # UI pages
+├── features/                  # Business logic by domain
+│   └── auth/                  # Auth controller, service, model, schema
+├── middleware/                # request handlers (auth, validation...)
+├── lib/                       # Prisma client, helpers
+├── prisma/                    # Prisma schema & migrations
+├── docker/                    # entrypoint scripts
+├── Dockerfile                 # multi-stage build for fullstack
+├── docker-compose.yml         # dev environment (db + backend + frontend)
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command                  | Description                       |
+| ------------------------ | --------------------------------- |
+| `npm run dev`            | Run Next.js in development mode   |
+| `npm run build`          | Build the app for production      |
+| `npm run start`          | Start the production server       |
+| `npx prisma migrate dev` | Create & run migrations in dev DB |
+| `npx prisma studio`      | Open Prisma Studio GUI            |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🐳 Docker / คำสั่ง Docker
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Build & run all**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  ```bash
+  docker compose up --build
+  ```
+* **Bring down**
 
-## Deploy on Vercel
+  ```bash
+  docker compose down
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📖 Learn More / เรียนรู้เพิ่มเติม
+
+* Next.js Documentation: [https://nextjs.org/docs](https://nextjs.org/docs)
+* Prisma Docs: [https://www.prisma.io/docs](https://www.prisma.io/docs)
+* Docker Docs: [https://docs.docker.com/](https://docs.docker.com/)
+
+---
+
+© 2025 Zero Bomb / พัฒนาโดย Zero Bomb
